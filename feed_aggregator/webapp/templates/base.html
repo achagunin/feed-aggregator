@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+    <head>
+	    {% if title %}
+            <title>{{ the_title }}</title>
+		{% else %}
+            <title>feed aggregator</title>
+        {% endif %}
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+	    <div>
+		    Навигация:
+			{% if the_title != "Агрегатор RSS каналов" %}		
+				<u><a href="{{ url_for('entry') }}">Главная</a></u>
+			{% endif %}
+			{% if the_title != "Поиск" %}		
+				<u><a href="{{ url_for('search_rss') }}">Поиск</a></u>
+			{% endif %}
+			{% if the_title != "БД каналов" %}		
+				<u><a href="{{ url_for('view_channel') }}">БД каналов</a></u>
+			{% endif %}
+			{% if the_title != "БД RSS" %}		
+				<u><a href="{{ url_for('view_rss') }}">БД RSS</a></u>
+			{% endif %}
+			{% if the_title != "Статистика" %}		
+				<u><a href="{{ url_for('view_log') }}">Статистика</a></u>
+			{% endif %}
+			<div>
+		<hr>
+			    {% if not current_user.is_anonymous %}
+					Пользователь: <b>{{ current_user.username }}</b>
+				{% endif %}
+				{% if current_user.is_anonymous and the_title != "Авторизация" %}
+					<u><a href="{{ url_for('do_login') }}">Авторизация</a></u>
+				{% elif not current_user.is_anonymous %}
+					<u><a href="{{ url_for('do_logout') }}">Выйти</a></u>
+				{% endif %}	
+			</div>
+			
+		</div>
+		</hr>
+		
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+		<fieldset>
+        <ul>
+            {% for message in messages %}
+            <li><h3>{{ message }}</h3></li>
+            {% endfor %}
+        </ul>
+		</fieldset>
+        {% endif %}
+        {% endwith %}
+		
+        {% block body %}
+
+        {% endblock %}
+    </body>
+</html>

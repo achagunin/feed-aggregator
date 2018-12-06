@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h2>{{ the_title }}</h2>
+
+    {% for rss_item in the_data %}
+		<fieldset>
+		<table>
+               <tr><td>
+			   <b>{{rss_item['title']}}</b>
+			   </td><tr>
+			   <tr><td>
+			   {{rss_item['summary']}}
+			   </td><tr>
+			   <tr><td>
+			   <time>{{rss_item['published']}}</time>
+			   </td><tr>
+			   <tr><td>
+			   <a href="{{rss_item['url']}}">Читать дальше</a>
+			   </td><tr>
+		</table>
+		</fieldset>
+    {% endfor %}
+
+<form method='GET' action='/entry_page'>
+<p><input value='Назад' type='SUBMIT'></p>
+</form>
+
+{% endblock %}

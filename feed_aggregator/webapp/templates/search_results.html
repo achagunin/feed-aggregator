@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h2>{{ the_title }}</h2>
+
+    {% for search_item in the_data %}
+		<fieldset>
+		<table>
+		       <tr><td>
+			   <i><b>{{search_item['url_channel']}}</b></i>
+			   </td><tr>
+               <tr><td>
+			   <b>{{search_item['title']}}</b>
+			   </td><tr>
+			   <tr><td>
+			   {{search_item['summary']}}
+			   </td><tr>
+			   <tr><td>
+			   <time>{{search_item['published']}}</time>
+			   </td><tr>
+			   <tr><td>
+			   <a href="{{search_item['url']}}">Читать дальше</a>
+			   </td><tr>
+		</table>
+		</fieldset>
+
+    {% endfor %}
+
+<form method='GET' action='/entry_page'>
+<p><input value='Назад' type='SUBMIT'></p>
+</form>
+
+{% endblock %}

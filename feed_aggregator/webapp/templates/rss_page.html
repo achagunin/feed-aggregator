@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h2>{{ the_title }}</h2>
+
+<fieldset>
+<p><b>Введите ID для удаления элемента:</b></p>
+<form action="" method="POST" novalidate>
+        {{ the_form.hidden_tag() }}
+        <p>
+		<table>
+            <tr><td>{{ the_form.id.label }}</td><!-- <br> -->
+            <td>{{ the_form.id(size=32) }}</td><td>{{ the_form.submit() }}</td></tr>
+		</table>
+			{% for error in the_form.id.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+</form>
+</fieldset>
+
+<fieldset>
+<table>
+    <caption><h2>Список RSS новостей в БД</h2></caption>
+    <tr>
+        {% for row_title in the_row_titles %}
+            <th>{{row_title}}</th>
+        {% endfor %}
+    </tr>
+    {% for log_row in the_data %}
+        <tr>
+            {% for item in log_row %}
+                <td>{{item}}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+</hr>
+
+<form method='GET' action='/entry_page'>
+<p><input value='Назад' type='SUBMIT'></p>
+</fieldset>
+
+{% endblock %}

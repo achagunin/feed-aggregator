@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h2>{{ the_title }}</h2>
+<fieldset>
+<form method='POST' action="">
+    {{ the_form.hidden_tag() }}
+    <table>
+        <p><b>Используйте эту форму для добавления адреса RSS канала:</b></p>
+        <p>
+		<table>
+            <tr><td>{{ the_form.url_address.label }}</td>
+			<td>{{ the_form.url_address(placeholder="http://www.example.com/rss")  }}</td><td>{{ the_form.submit() }}</td></tr>
+		</table>
+			{% for error in the_form.url_address.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+    </table>
+</fieldset>
+
+<fieldset>
+<table>
+<caption><h2>Каталог каналов</h2></caption>
+    <tr>
+        {% for row_title in the_row_titles %}
+            <th>{{row_title}}</th>
+        {% endfor %}
+    </tr>
+    {% for channel_row in the_data %}
+        <tr>
+		   <td>
+		   <a href="{{channel_row['url']}}">{{channel_row['url']}}</a>
+		   </td>
+           <td>
+		   {{channel_row['title']}}
+		   </td>
+		   <td>
+		   {{channel_row['time']}}
+		   </td>
+		   
+			<td>
+			<form method='POST' action='\results'>
+			 <a href="{{ url_for('update_channel', id_channel = channel_row['id'] ) }}">Обновить</a>
+			</form>
+			</td>
+			
+			<td>
+			<form method='POST' action='\channel_rss'>
+			 <a href="{{ url_for('read_channel', id_channel = channel_row['id'] ) }}">Читать</a>
+			</form>
+			</td>
+        </tr>
+    {% endfor %}
+</table>
+</fieldset>
+
+{% endblock %}

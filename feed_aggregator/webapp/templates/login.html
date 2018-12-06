@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h2>{{ the_title }}</h2>
+
+    <form action="" method="POST" novalidate>
+        {{ the_form.hidden_tag() }}
+        <p>
+            {{ the_form.username.label }}<br>
+            {{ the_form.username(size=32) }}
+			{% for error in the_form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ the_form.password.label }}<br>
+            {{ the_form.password(size=32) }}
+			{% for error in the_form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ the_form.remember_me() }} {{ the_form.remember_me.label }}</p>
+        <p>{{ the_form.submit() }}</p>
+    </form>
+
+<form method='GET' action='/entry_page'>
+<p><input value='Назад' type='SUBMIT'></p>
+</form>
+
+{% endblock %}
