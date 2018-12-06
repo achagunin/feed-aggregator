@@ -1,9 +1,9 @@
 # feed-aggregator
 
 Веб приложение для агрегации новостей с RSS каналов.
-
+***
 ### Пример создания таблиц БД для приложения
-
+***
 * create table log_tab(
 * id int auto_increment primary key,
 * ts timestamp default current_timestamp,
@@ -36,7 +36,7 @@
 * published_item varchar(32) not null);
 ***
 ### Пример файла конфигурации config.ini
-
+***
 * [rss_db_config]
 * host = 127.0.0.1
 * user = user_rss_db
