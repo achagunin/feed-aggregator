@@ -34,7 +34,7 @@
 * summary_item varchar(10240) not null,
 * url_item varchar(512) not null,
 * published_item varchar(32) not null);
-
+***
 ### Пример файла конфигурации config.ini
 
 * [rss_db_config]
@@ -42,18 +42,18 @@
 * user = user_rss_db
 * password =  rssdbpasswd
 * database = rss_db
-
+***
 * [log_db_config]
 * host = 127.0.0.1
 * user = user_log_db
 * password =  logdbpasswd
 * database = log_db
-
+***
 * [users_db_config]
 * host = 127.0.0.1
 * user = user_users_db
 * password =  usersdbpasswd
 * database = users_db
-
+***
 * [settings]
 * error_log = ON
